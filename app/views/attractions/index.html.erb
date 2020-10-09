@@ -1,0 +1,18 @@
+<h1>Current Attractions</h1>
+<% @attractions.each do |attr| %>
+    Name: <%= attr.name %><br>
+    Tickets: <%= attr.tickets %><br>
+    Nausea Rating: <%= attr.nausea_rating %><br>
+    Happiness Rating: <%= attr.happiness_rating %><br>
+    Minimum Height: <%= attr.min_height %><br>
+    <% if current_user.admin %>
+        <%= link_to "Show #{attr.name}", attraction_path(attr.id) %>
+    <% else %>
+        <%= link_to "Go on #{attr.name}", attraction_path(attr.id) %>
+    <% end %>
+    <br><br>
+<% end %>
+
+<% if current_user.admin %>
+    <%= link_to "New Attraction", new_attraction_path %>
+<% end %>
